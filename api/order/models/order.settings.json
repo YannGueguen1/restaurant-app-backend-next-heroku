@@ -1,5 +1,5 @@
 {
-  "connection": "default",
+  "kind": "collectionType",
   "collectionName": "orders",
   "info": {
     "name": "order",
@@ -7,37 +7,31 @@
   },
   "options": {
     "increments": true,
-    "timestamps": [
-      "created_at",
-      "updated_at"
-    ],
-    "comment": ""
+    "timestamps": true,
+    "draftAndPublish": true
   },
   "attributes": {
-    "address": {
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "paid",
+        "unpaid"
+      ]
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "checkout_session": {
       "type": "string"
     },
-    "city": {
-      "type": "string"
-    },
-    "dishes": {
-      "type": "json",
-      "required": true
-    },
-    "amount": {
-      "type": "biginteger"
-    },
-    "token": {
-      "type": "string"
-    },
-    "state": {
-      "type": "string"
-    },
-    "charge_id": {
-      "type": "string"
+    "product": {
+      "model": "product",
+      "via": "orders"
     },
     "user": {
-      "type": "string"
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "orders"
     }
   }
 }
