@@ -18,7 +18,10 @@ module.exports = ({ env }) => {
             password: config.password,
           },
           options: {
-            ssl: false,
+            ssl: {
+              require: false,
+              rejectUnauthorized: false, 
+            },
           },
         },
       },
